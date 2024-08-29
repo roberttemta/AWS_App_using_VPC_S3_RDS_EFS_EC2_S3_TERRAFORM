@@ -6,7 +6,7 @@ resource "aws_vpc" "vpc1" {
   instance_tenancy = "default"
 
   tags = {
-    Name = "utc-vpc"
+    Name = var.vpc-name
     Team = var.Team
     env  = var.ENVIRONMENT
   }

@@ -1,13 +1,12 @@
-/*
+
 # Creating and S3
 
 resource "aws_s3_bucket" "bucket1" {
-  bucket = "utc-app2-bucket"
+  bucket = var.bucket-name
 
   tags = {
-    Name        = "tc-app2-bucket"
-    //Environment = "Dev"
-    Environment = var.ENVIRONMENT
+    Team = var.Team
+    env  = var.ENVIRONMENT
   }
 }
 
@@ -33,4 +32,3 @@ resource "aws_s3_bucket_ownership_controls" "ownership1" {
     object_ownership = "BucketOwnerPreferred"
   }
 }
-*/

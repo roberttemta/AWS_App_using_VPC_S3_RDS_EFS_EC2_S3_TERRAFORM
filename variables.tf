@@ -16,6 +16,11 @@ variable "ENVIRONMENT" {
 
 variable "Team" {
   default = "config management"
+  
+}
+
+variable "vpc-name" {
+  default = "utc-vpc"
 }
 
 variable "filename" {
@@ -85,4 +90,20 @@ variable "db-password" {
   default     = ""
   sensitive = true
   # How  do you manage sensitive data?
+}
+
+# S3 variables
+
+variable "bucket-name" {
+  default = "utc-vpc-bucket-backup1"
+}
+
+# IAM Variables
+
+variable "iam-role-name" {
+  default = "ec2_s3_access_role"
+}
+
+variable "ec2-s3-access-policy-name" {
+  default = "s3_access_policy"
 }
