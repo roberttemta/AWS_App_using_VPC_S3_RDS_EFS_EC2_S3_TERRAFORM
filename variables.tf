@@ -16,7 +16,7 @@ variable "ENVIRONMENT" {
 
 variable "Team" {
   default = "config management"
-  
+
 }
 
 variable "vpc-name" {
@@ -76,19 +76,19 @@ variable "record_name" {
 # DB variables
 variable "db_name" {
   description = "The name of the Database in utc-vpc"
-  default     = "utc-dev-database"
+  default     = "databasedev"
 }
 
 variable "db-username" {
   description = "The admin of DB name"
-  default     = ""
-  sensitive = true
+  type        = string
+  sensitive   = true
   # How  do you manage sensitive data?
 }
 variable "db-password" {
   description = "The password of DB"
-  default     = ""
-  sensitive = true
+  type        = string
+  sensitive   = true
   # How  do you manage sensitive data?
 }
 

@@ -1,8 +1,8 @@
 
 resource "aws_instance" "bastion-server" {
-  ami                    = var.ami-bastion
-  instance_type          = var.INSTANCE_TYPE
-  key_name               = aws_key_pair.aws_key.key_name
+  ami           = var.ami-bastion
+  instance_type = var.INSTANCE_TYPE
+  key_name      = aws_key_pair.aws_key.key_name
   //user_data              = file("server-install.sh")
   vpc_security_group_ids = [aws_security_group.bastion-sg.id]
   subnet_id              = aws_subnet.private[5].id

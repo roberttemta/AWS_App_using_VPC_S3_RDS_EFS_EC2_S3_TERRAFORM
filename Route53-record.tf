@@ -11,7 +11,7 @@ resource "aws_route53_record" "site_domain" {
   type    = "A"
 
   alias {
-    name                   = aws_lb.load-balancer.dns_name
+    name    = aws_lb.load-balancer.dns_name
     zone_id = aws_lb.load-balancer.zone_id
     //zone_id                = var.application_load_balancer_zone_id
     evaluate_target_health = true

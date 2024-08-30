@@ -1,22 +1,22 @@
 
 #creating the instance 1
 resource "aws_instance" "server" {
-  count                       = 2
-  ami                         = var.ami-app-servers
-  instance_type               = var.INSTANCE_TYPE
-  key_name                    = aws_key_pair.aws_key.key_name
-  user_data                   = file("server-install.sh")
-  vpc_security_group_ids      = [aws_security_group.sg-inst.id]
-  iam_instance_profile = aws_iam_role.ec2_s3_access_role.name
-  subnet_id                   = element([aws_subnet.public[0].id, aws_subnet.public[1].id], count.index)
+  count                  = 2
+  ami                    = var.ami-app-servers
+  instance_type          = var.INSTANCE_TYPE
+  key_name               = aws_key_pair.aws_key.key_name
+  user_data              = file("server-install.sh")
+  vpc_security_group_ids = [aws_security_group.sg-inst.id]
+  iam_instance_profile   = aws_iam_role.ec2_s3_access_role.name
+  subnet_id = element([aws_subnet.public[0].id, aws_subnet.public[1].id], count.index)
   //subnet_id                   = element([aws_subnet.private[0], aws_subnet.private[1].id], count.index)
   associate_public_ip_address = true
   //availability_zone      = "us-east-1a"
-# This is the configuration that works for me. But when I try to put both server in Private subnets, 
-# the target group shows server unhealthy.
+  # This is the configuration that works for me. But when I try to put both server in Private subnets, 
+  # the target group shows server unhealthy.
   tags = {
     Name = "utc-app-server-${count.index + 1}"
-    
+
   }
 
   /*
@@ -25,7 +25,7 @@ resource "aws_instance" "server" {
   ${count.index}
   )
 */
-depends_on = [aws_vpc.vpc1, aws_security_group.sg-inst]
+  depends_on = [aws_vpc.vpc1, aws_security_group.sg-inst]
 }
 
 /*

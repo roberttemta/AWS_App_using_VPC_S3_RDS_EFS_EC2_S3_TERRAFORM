@@ -10,7 +10,7 @@ resource "aws_route_table" "Public-Rt" {
 }
 # Private route table 1
 resource "aws_route_table" "Private-Rt" {
-  count = 2
+  count  = 2
   vpc_id = aws_vpc.vpc1.id
   route {
     cidr_block = "0.0.0.0/0"
