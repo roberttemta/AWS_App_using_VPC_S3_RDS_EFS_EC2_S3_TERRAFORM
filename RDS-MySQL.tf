@@ -12,7 +12,7 @@ resource "aws_db_instance" "utc-db" {
   skip_final_snapshot  = true
   //db_subnet_group_name   = aws_db_subnet_group.my_db_subnet_group.name
   vpc_security_group_ids = [aws_security_group.DB-sg.id]
-  depends_on = [ aws_vpc.vpc1, aws_subnet.private[5] ]
+  depends_on             = [aws_vpc.vpc1, aws_subnet.private[5], aws_security_group.DB-sg]
 }
 
 /*

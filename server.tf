@@ -7,8 +7,8 @@ resource "aws_instance" "server" {
   key_name               = aws_key_pair.aws_key.key_name
   user_data              = file("server-install.sh")
   vpc_security_group_ids = [aws_security_group.sg-inst.id]
-  iam_instance_profile   = aws_iam_role.ec2_s3_access_role.name
-  subnet_id = element([aws_subnet.public[0].id, aws_subnet.public[1].id], count.index)
+  iam_instance_profile   = aws_iam_instance_profile.ec2_instance_profile.name
+  subnet_id              = element([aws_subnet.public[0].id, aws_subnet.public[1].id], count.index)
   //subnet_id                   = element([aws_subnet.private[0], aws_subnet.private[1].id], count.index)
   associate_public_ip_address = true
   //availability_zone      = "us-east-1a"
@@ -25,7 +25,7 @@ resource "aws_instance" "server" {
   ${count.index}
   )
 */
-  depends_on = [aws_vpc.vpc1, aws_security_group.sg-inst]
+  depends_on = [aws_vpc.vpc1, aws_security_group.sg-inst, aws_iam_role.ec2_s3_access_role]
 }
 
 /*

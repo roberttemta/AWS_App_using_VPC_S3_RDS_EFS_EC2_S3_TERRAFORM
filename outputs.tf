@@ -14,6 +14,10 @@ output "public-ip" {
 output "private-ip" {
   value = aws_instance.server[*].private_ip
 }
+
+output "acm" {
+  value = aws_route53_record.site_domain.name
+}
 /*
 output "server2-private-ip" {
   value = aws_instance.server2.private_ip

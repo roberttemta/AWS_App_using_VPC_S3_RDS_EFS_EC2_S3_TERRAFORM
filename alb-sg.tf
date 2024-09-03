@@ -1,6 +1,6 @@
 
 resource "aws_security_group" "sg-alb1" {
-  name        = "alb-sg"
+  name        = var.lb-sg-name
   vpc_id      = aws_vpc.vpc1.id
   description = "Allow  http"
 
@@ -19,6 +19,7 @@ resource "aws_security_group" "sg-alb1" {
     cidr_blocks = ["0.0.0.0/0"]
   }
   tags = {
+    Name = var.lb-sg-name
     env  = var.ENVIRONMENT
     Team = var.Team
   }

@@ -2,7 +2,7 @@
 # Creating the security group
 
 resource "aws_security_group" "sg-inst" {
-  name        = "web-sg"
+  name        = var.server-sg-name
   vpc_id      = aws_vpc.vpc1.id
   description = "Allow ssh and httpd"
 
@@ -31,6 +31,7 @@ resource "aws_security_group" "sg-inst" {
     cidr_blocks = ["0.0.0.0/0"]
   }
   tags = {
+    Name = var.server-sg-name
     env  = var.ENVIRONMENT
     Team = var.Team
   }

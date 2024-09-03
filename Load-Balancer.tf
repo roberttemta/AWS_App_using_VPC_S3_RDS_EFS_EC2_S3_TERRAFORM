@@ -2,8 +2,14 @@
 
 resource "aws_lb_listener" "lt1" {
   load_balancer_arn = aws_lb.load-balancer.arn
-  port              = 80
-  protocol          = "HTTP"
+  port              = 443 # If you have a certificate
+  protocol          = "HTTPS"
+
+  ssl_policy      = "ELBSecurityPolicy-2016-08"
+  certificate_arn = data.aws_acm_certificate.amazon_issued.arn
+
+  //port              = 80    # If you don't have a certificate
+  //protocol          = "HTTP"
 
   default_action {
     type             = "forward"

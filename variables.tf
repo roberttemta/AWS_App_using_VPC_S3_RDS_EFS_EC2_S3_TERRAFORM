@@ -63,6 +63,24 @@ variable "subnet_cidr_private" {
   type        = list(any)
 }
 
+# Security groups variables
+
+variable "db-sg-name" {
+  default = "DB-sg"
+}
+
+variable "server-sg-name" {
+  default = "servers-sg"
+}
+
+variable "lb-sg-name" {
+  default = "utc-lb-sg"
+}
+
+variable "bastion-sg-name" {
+  default = "utc-bastion-sg"
+}
+
 # route-53 variables
 variable "domain_name" {
   description = "The domain I have in aws"
@@ -106,4 +124,12 @@ variable "iam-role-name" {
 
 variable "ec2-s3-access-policy-name" {
   default = "s3_access_policy"
+}
+
+# ACM variables
+
+variable "acm_certificate_arn" {
+  description = "ARN of the ACM certificate to use for the ALB"
+  type        = string
+  default     = ""
 }

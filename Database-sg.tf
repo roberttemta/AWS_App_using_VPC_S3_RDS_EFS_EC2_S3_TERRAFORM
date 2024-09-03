@@ -3,7 +3,7 @@
 # Creating the security group
 
 resource "aws_security_group" "DB-sg" {
-  name        = "database-sg"
+  name        = var.db-sg-name
   vpc_id      = aws_vpc.vpc1.id
   description = "Allow MySQL"
 
@@ -24,6 +24,7 @@ resource "aws_security_group" "DB-sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
   tags = {
+    Name = var.db-sg-name
     env  = var.ENVIRONMENT
     Team = var.Team
   }
